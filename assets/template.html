@@ -1,0 +1,207 @@
+<!doctype html>
+<!--
+  biolink-studio template - "Aurora" dark glass.
+  Adapt this file to generate a user's page:
+  (1) pick a vibe from reference/vibes.md and replace the ACCENT/BLOOM tokens,
+  (2) fill the IDENTITY placeholders (avatar initials OR an <img>),
+  (3) duplicate/remove the CTA / PRODUCTS / LINKS / SOCIALS blocks to match content,
+  (4) renumber every --i sequentially from 0, (5) fill <title>/meta/OG.
+  Keep all CSS, the accessibility, and the motion. Placeholders are {{DOUBLE_BRACES}}.
+-->
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{{PAGE_NAME}}</title>
+<meta name="description" content="{{META_DESCRIPTION}}" />
+<meta name="theme-color" content="{{THEME_COLOR}}" />
+<!-- <link rel="icon" href="{{FAVICON_URL}}" /> -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{PAGE_NAME}}" />
+<meta property="og:description" content="{{META_DESCRIPTION}}" />
+<!-- <meta property="og:image" content="{{OG_IMAGE_URL}}" /> -->
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- FONTS: swap per vibe -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/tabler-icons.min.css" />
+<style>
+  :root {
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-quart: cubic-bezier(0.23, 1, 0.32, 1);
+    /* ===== VIBE TOKENS: replace this block with a vibe from reference/vibes.md ===== */
+    --bg: oklch(0.13 0.02 265);
+    --ink: oklch(0.98 0.005 250);
+    --ink-soft: oklch(0.88 0.012 250);
+    --mute: oklch(0.68 0.02 258);
+    --glass: oklch(1 0 0 / 0.06);
+    --glass-soft: oklch(1 0 0 / 0.04);
+    --brd: oklch(1 0 0 / 0.12);
+    --hi: oklch(1 0 0 / 0.14);
+    --a1: oklch(0.83 0.12 200);
+    --a2: oklch(0.7 0.16 292);
+    --on-accent: oklch(0.16 0.03 265);
+    --glow: oklch(0.7 0.15 250 / 0.5);
+    --bloom-1: oklch(0.7 0.15 200 / 0.5);
+    --bloom-2: oklch(0.6 0.18 295 / 0.5);
+    --bloom-3: oklch(0.6 0.16 255 / 0.4);
+    /* ===== END VIBE TOKENS ===== */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body); background: var(--bg); color: var(--ink);
+    min-height: 100dvh; display: grid; place-items: center;
+    padding: clamp(24px, 6vw, 56px) 20px; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  .bloom { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .bloom span { position: absolute; border-radius: 50%; filter: blur(72px); mix-blend-mode: screen; }
+  .bloom .b1 { width: 44vmax; height: 44vmax; background: var(--bloom-1); top: -16vmax; left: -8vmax; animation: d1 24s var(--ease-quart) infinite alternate; }
+  .bloom .b2 { width: 42vmax; height: 42vmax; background: var(--bloom-2); bottom: -14vmax; right: -10vmax; animation: d2 30s var(--ease-quart) infinite alternate; }
+  .bloom .b3 { width: 34vmax; height: 34vmax; background: var(--bloom-3); bottom: -6vmax; left: -6vmax; animation: d3 34s var(--ease-quart) infinite alternate; }
+  @keyframes d1 { to { transform: translate(6vmax, 7vmax) scale(1.15); } }
+  @keyframes d2 { to { transform: translate(-6vmax, -5vmax) scale(1.2); } }
+  @keyframes d3 { to { transform: translate(5vmax, -4vmax) scale(1.12); } }
+
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 416px; }
+  .head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 9px; margin-bottom: 18px; }
+  .avatar { width: 84px; height: 84px; border-radius: 24px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--ink); background: var(--glass); border: 1px solid var(--brd); box-shadow: inset 0 1px 0 var(--hi), 0 10px 30px -12px var(--glow); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); object-fit: cover; }
+  .name { font-family: var(--font-display); font-weight: 600; font-size: clamp(23px, 6.4vw, 27px); color: var(--ink); letter-spacing: -0.01em; }
+  .bio { font-size: 14.5px; color: var(--mute); max-width: 30ch; line-height: 1.45; }
+
+  .cta {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 16px; margin-top: 8px; border-radius: 16px;
+    font-size: 15px; font-weight: 600; text-decoration: none; color: var(--on-accent);
+    background: linear-gradient(100deg, var(--a1), var(--a2));
+    box-shadow: 0 14px 34px -12px var(--glow), inset 0 1px 0 oklch(1 0 0 / 0.25);
+    transition: transform 0.2s var(--ease-expo), box-shadow 0.2s var(--ease-expo);
+  }
+  .cta i { font-size: 19px; }
+  .cta:active { transform: scale(0.98); }
+
+  .label { margin: 22px 4px 11px; font-size: 11px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: var(--mute); }
+
+  .shop { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tile {
+    display: flex; flex-direction: column; gap: 9px; padding: 12px; border-radius: 18px; text-decoration: none;
+    background: var(--glass); border: 1px solid var(--brd); box-shadow: inset 0 1px 0 var(--hi);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    transition: transform 0.26s var(--ease-expo), border-color 0.26s var(--ease-expo);
+  }
+  .tile .thumb { height: 86px; border-radius: 12px; display: grid; place-items: center; color: oklch(1 0 0 / 0.92); font-size: 26px; background: linear-gradient(135deg, var(--a1), var(--a2)); }
+  .tile .pt { font-family: var(--font-display); font-weight: 500; font-size: 15px; line-height: 1.15; color: var(--ink); }
+  .tile .price { align-self: flex-start; font-size: 12.5px; font-weight: 500; color: var(--ink); background: var(--glass-soft); border: 1px solid var(--brd); padding: 3px 11px; border-radius: 999px; }
+  .tile:active { transform: scale(0.985); }
+
+  .links { display: flex; flex-direction: column; gap: 11px; }
+  .row {
+    display: flex; align-items: center; gap: 13px; padding: 13px 14px; border-radius: 16px; text-decoration: none;
+    background: var(--glass-soft); border: 1px solid var(--brd); box-shadow: inset 0 1px 0 var(--hi);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    transition: transform 0.24s var(--ease-expo), border-color 0.24s var(--ease-expo);
+  }
+  .row .ic { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-size: 19px; color: var(--a1); background: var(--glass); border: 1px solid var(--brd); }
+  .row .rt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .row .r1 { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .row .r2 { font-size: 12.5px; color: var(--mute); }
+  .row .arr { flex: none; color: var(--mute); font-size: 18px; transition: transform 0.24s var(--ease-expo); }
+  .row:active { transform: scale(0.99); }
+
+  .socials { display: flex; justify-content: center; gap: 11px; margin-top: 22px; }
+  .soc { width: 50px; height: 50px; border-radius: 15px; display: grid; place-items: center; font-size: 20px; color: var(--ink-soft); text-decoration: none; background: var(--glass-soft); border: 1px solid var(--brd); box-shadow: inset 0 1px 0 var(--hi); transition: transform 0.2s var(--ease-expo), color 0.2s var(--ease-quart); }
+  .soc:active { transform: scale(0.94); }
+
+  .foot { display: block; text-align: center; margin-top: 20px; padding: 8px 0; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mute); text-decoration: none; opacity: 0.85; }
+
+  a:focus-visible { outline: 2px solid var(--a1); outline-offset: 3px; border-radius: 14px; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 20px 44px -12px var(--glow), inset 0 1px 0 oklch(1 0 0 / 0.25); }
+    .tile:hover { transform: translateY(-3px); border-color: var(--brd); }
+    .row:hover { transform: translateY(-2px); border-color: oklch(1 0 0 / 0.22); }
+    .row:hover .arr { transform: translateX(4px); }
+    .soc:hover { transform: translateY(-3px); color: var(--ink); }
+    .foot:hover { color: var(--ink-soft); }
+  }
+
+  .rise { opacity: 0; transform: translateY(12px); animation: rise 0.6s var(--ease-expo) forwards; animation-delay: calc(var(--i, 0) * 60ms); }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bloom span { animation: none; }
+    .rise { opacity: 1; transform: none; animation: none; }
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="bloom" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+
+  <div class="wrap">
+    <header class="head">
+      <!-- IDENTITY: initials avatar (decorative, aria-hidden) OR an <img>. Use one. -->
+      <div class="avatar rise" style="--i:0" aria-hidden="true">{{INITIALS}}</div>
+      <!-- <img class="avatar rise" style="--i:0" src="{{AVATAR_URL}}" alt="{{PAGE_NAME}}" /> -->
+      <h1 class="name rise" style="--i:1">{{PAGE_NAME}}</h1>
+      <p class="bio rise" style="--i:2">{{BIO}}</p>
+    </header>
+
+    <main>
+      <!-- PRIMARY CTA: the one main action. Remove if none. Pick a fitting ti- icon. -->
+      <a class="cta rise" style="--i:3" href="{{CTA_URL}}">
+        <i class="ti ti-{{CTA_ICON}}" aria-hidden="true"></i> {{CTA_LABEL}}
+      </a>
+
+      <!-- PRODUCTS: optional. Duplicate .tile per product. Delete the h2 + .shop if none. -->
+      <h2 class="label rise" style="--i:4">{{SHOP_LABEL}}</h2>
+      <div class="shop">
+        <a class="tile rise" style="--i:5" href="{{PRODUCT_1_URL}}">
+          <span class="thumb"><i class="ti ti-{{PRODUCT_1_ICON}}" aria-hidden="true"></i></span>
+          <span class="pt">{{PRODUCT_1_NAME}}</span>
+          <span class="price">{{PRODUCT_1_PRICE}}</span>
+        </a>
+        <a class="tile rise" style="--i:6" href="{{PRODUCT_2_URL}}">
+          <span class="thumb"><i class="ti ti-{{PRODUCT_2_ICON}}" aria-hidden="true"></i></span>
+          <span class="pt">{{PRODUCT_2_NAME}}</span>
+          <span class="price">{{PRODUCT_2_PRICE}}</span>
+        </a>
+      </div>
+
+      <!-- LINKS: the button list. Duplicate .row per link. .r2 sub-line is optional. -->
+      <h2 class="label rise" style="--i:7">{{LINKS_LABEL}}</h2>
+      <nav class="links" aria-label="{{LINKS_LABEL}}">
+        <a class="row rise" style="--i:8" href="{{LINK_1_URL}}">
+          <span class="ic"><i class="ti ti-{{LINK_1_ICON}}" aria-hidden="true"></i></span>
+          <span class="rt"><span class="r1">{{LINK_1_TITLE}}</span><span class="r2">{{LINK_1_SUB}}</span></span>
+          <i class="ti ti-chevron-right arr" aria-hidden="true"></i>
+        </a>
+        <a class="row rise" style="--i:9" href="{{LINK_2_URL}}">
+          <span class="ic"><i class="ti ti-{{LINK_2_ICON}}" aria-hidden="true"></i></span>
+          <span class="rt"><span class="r1">{{LINK_2_TITLE}}</span><span class="r2">{{LINK_2_SUB}}</span></span>
+          <i class="ti ti-chevron-right arr" aria-hidden="true"></i>
+        </a>
+        <a class="row rise" style="--i:10" href="{{LINK_3_URL}}">
+          <span class="ic"><i class="ti ti-{{LINK_3_ICON}}" aria-hidden="true"></i></span>
+          <span class="rt"><span class="r1">{{LINK_3_TITLE}}</span><span class="r2">{{LINK_3_SUB}}</span></span>
+          <i class="ti ti-chevron-right arr" aria-hidden="true"></i>
+        </a>
+      </nav>
+
+      <!-- SOCIALS: optional. Keep only platforms the user has. ti-brand-NAME. -->
+      <div class="socials rise" style="--i:11">
+        <a class="soc" href="{{INSTAGRAM_URL}}" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
+        <a class="soc" href="{{TIKTOK_URL}}" aria-label="TikTok"><i class="ti ti-brand-tiktok" aria-hidden="true"></i></a>
+        <a class="soc" href="{{YOUTUBE_URL}}" aria-label="YouTube"><i class="ti ti-brand-youtube" aria-hidden="true"></i></a>
+        <a class="soc" href="{{X_URL}}" aria-label="X"><i class="ti ti-brand-x" aria-hidden="true"></i></a>
+      </div>
+    </main>
+
+    <footer>
+      <a class="foot rise" style="--i:12" href="{{FOOTER_URL}}">{{FOOTER_TEXT}}</a>
+    </footer>
+  </div>
+</body>
+</html>
