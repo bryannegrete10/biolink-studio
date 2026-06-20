@@ -115,6 +115,8 @@
   .soc:active { transform: scale(0.94); }
 
   .foot { display: block; text-align: center; margin-top: 20px; padding: 8px 0; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mute); text-decoration: none; opacity: 0.85; }
+  .credit { text-align: center; margin-top: 4px; font-size: 11px; color: var(--mute); opacity: 0.65; }
+  .credit a { color: var(--mute); text-decoration: none; transition: color 0.2s var(--ease-quart); }
 
   a:focus-visible { outline: 2px solid var(--a1); outline-offset: 3px; border-radius: 14px; }
 
@@ -125,6 +127,7 @@
     .row:hover .arr { transform: translateX(4px); }
     .soc:hover { transform: translateY(-3px); color: var(--ink); }
     .foot:hover { color: var(--ink-soft); }
+    .credit a:hover { color: var(--ink-soft); }
   }
 
   .rise { opacity: 0; transform: translateY(12px); animation: rise 0.6s var(--ease-expo) forwards; animation-delay: calc(var(--i, 0) * 60ms); }
@@ -201,6 +204,7 @@
 
     <footer>
       <a class="foot rise" style="--i:12" href="{{FOOTER_URL}}">{{FOOTER_TEXT}}</a>
+      <div class="credit rise" style="--i:13">Made with <a href="https://github.com/bryannegrete10/biolink-studio">biolink-studio</a> by <a href="https://reacttagency.com">Reactt Agency</a></div>
     </footer>
   </div>
 </body>

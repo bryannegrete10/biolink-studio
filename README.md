@@ -59,4 +59,4 @@ large touch targets, keyboard focus, and a full reduced-motion fallback.
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Built with [Claude Code](https://claude.com/claude-code).
+MIT. See [LICENSE](LICENSE). Made by [Reactt Agency](https://reacttagency.com), built with [Claude Code](https://claude.com/claude-code).

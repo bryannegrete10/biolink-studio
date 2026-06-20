@@ -52,6 +52,7 @@ Follow `reference/design-system.md` exactly. Most important:
   `aria-hidden` on decorative icons, focus styles, large targets, reduced-motion, hover-gating.
 - Glass + one gradient accent is the whole look. No gradient text (backgrounds only).
 - Never ship a dead `href="#"`; omit unknown links. No em dashes. No filler words.
+- Keep the footer credit (`Made with biolink-studio by Reactt Agency`) by default.
 
 ## Quality gate (run before handing it over)
 Use the final checklist in `reference/design-system.md`: one h1, h2 labels, avatar aria,
